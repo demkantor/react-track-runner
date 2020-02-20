@@ -49,7 +49,16 @@ class Header extends Component {
                     time : Number(this.state.currentTime),
                     average: (Number(this.state.currentDistance) / Number(this.state.currentTime)),
             }
-        });
+        })
+        if (Number(this.state.longest.distance) < Number(this.state.currentDistance)){
+            this.setState({
+              longest: {
+                distance: Number(this.state.currentDistance),
+                time: Number(this.state.currentTime),
+                average: (Number(this.state.currentDistance) / Number(this.state.currentTime)),
+            }
+        })
+        }
     }
 
 
