@@ -2,32 +2,31 @@ import React, { Component } from 'react';
 
 class Header extends Component {
     state ={
-        distance: {
-            recent: '',
-            longest: 0,
-            fastest: 0
+        currentDistance: '',
+        currentTime: '',
+        recent: {
+            distance: 0,
+            time: 0,
+            average: 0
         },
-        time: {
-            recent: '',
-            longest: 0,
-            fastest: 0
+        longest: {
+            distance: 0,
+            time: 0,
+            average: 0
         },
-        average: {
-            recent: 0,
-            longest: 0,
-            fastest: 0
+        fastest: {
+            distance: 0,
+            time: 0,
+            average: 0
         }
       }
 
 
     handleChangeDistance = (event, propertyName) => {
-        console.log(this.state.distance);
+        console.log(this.state.currenDdistance);
         console.log(event.target.value);
         this.setState({
-          distance: {
-            ...this.state.distance,
-            [propertyName]: event.target.value,
-          }
+            currentDistance : event.target.value
         });
       }
 
@@ -35,10 +34,7 @@ class Header extends Component {
         console.log(this.state.time);
         console.log(event.target.value);
         this.setState({
-            time: {
-                ...this.state.time,
-                [propertyName]: event.target.value
-            }
+            currentTime : event.target.value
         });
     }
 
@@ -46,39 +42,45 @@ class Header extends Component {
         event.preventDefault();
         console.log('working hard here!', this.state);
         this.setState({
-
-        })
+            currentDistance: '',
+            currentTime: '',
+                recent: {
+                    distance : Number(this.state.currentDistance),
+                    time : Number(this.state.currentTime),
+                    average: (Number(this.state.currentDistance) / Number(this.state.currentTime)),
+            }
+        });
     }
 
 
-    render() {
+    render() {  
         return (
             <div>
                 <h1>React Track Runner</h1>
                 <div className='header'>
                     <form onSubmit={this.handleSubmit}>
-                        <input type="number" value={this.state.distance.recent} placeholder="Miles Ran" onChange={(event) => this.handleChangeDistance(event, 'recent')}/>
-                        <input type="number" placeholder="Time Spent Running" onChange={(event) => this.handleChangeTime(event, 'recent')}/>
+                        <input type="number" value={this.state.currentDistance} placeholder="Miles Ran" onChange={this.handleChangeDistance} />
+                        <input type="number" value={this.state.currentTime} placeholder="Time Spent Running" onChange={this.handleChangeTime} />
                     <input type="submit" value="Add New Run" />
                     </form>
                     <h3>Recent Run</h3>
-                        <h5>Distance Ran: {this.state.distance.recent}
+                        <h5>Distance Ran: {this.state.recent.distance}
                         <br/>
-                        Time: {this.state.time.recent}
+                        Time: {this.state.recent.time}
                         <br/>
-                        Average: {this.state.average.recent}</h5>
+                        Average: {this.state.recent.average}</h5>
                     <h3>Longest Run</h3>
-                        <h5>Distance Ran: {this.state.distance.longest}
+                        <h5>Distance Ran: {this.state.longest.distance}
                         <br/>
-                        Time: {this.state.time.longest}
+                        Time: {this.state.longest.time}
                         <br/>
-                        Average: {this.state.average.longest}</h5>
+                        Average: {this.state.longest.average}</h5>
                     <h3>Fastest Run</h3>
-                        <h5>Distance Ran: {this.state.distance.fastest}
+                        <h5>Distance Ran: {this.state.fastest.distance}
                         <br/>
-                        Time: {this.state.time.fastest}
+                        Time: {this.state.fastest.time}
                         <br/>
-                        Average: {this.state.average.fastest}</h5>
+                        Average: {this.state.fastest.average}</h5>
                 </div>
             </div>
         )
