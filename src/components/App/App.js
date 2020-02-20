@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import './App.css';
-import Header from '../Header/Header';
+// import Header from '../Header/Header';
+import Runner from '../Runner/Runner';
 
 class App extends Component{
   render(){
     return (
       <div className="App">
         <header className="App-header">
-          <Header />
+          <Runner />
           <p>
             I've got to (dunt, dunt) run away... I've got to (dunt, dunt) get away from the react you...
           </p>
