@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Header.css';
 
 class Header extends Component {
     state ={
@@ -81,24 +82,32 @@ class Header extends Component {
                         <input type="number" value={this.state.currentTime} placeholder="Time Spent Running" onChange={this.handleChangeTime} />
                     <input type="submit" value="Add New Run" />
                     </form>
-                    <h3>Recent Run</h3>
+                    <div className="flex-grid">
+                    <div className="col">
+                    <h3 className="col">Recent Run</h3>
                         <h5>Distance Ran: {this.state.recent.distance}
                         <br/>
                         Time: {this.state.recent.time}
                         <br/>
                         Average: {this.state.recent.average}</h5>
-                    <h3>Longest Run</h3>
+                    </div>
+                    <div className="col">
+                    <h3 className="col">Longest Run</h3>
                         <h5>Distance Ran: {this.state.longest.distance}
                         <br/>
                         Time: {this.state.longest.time}
                         <br/>
                         Average: {this.state.longest.average}</h5>
+                    </div>
+                    <div className="col">
                     <h3>Fastest Run</h3>
                         <h5>Distance Ran: {this.state.fastest.distance}
                         <br/>
                         Time: {this.state.fastest.time}
                         <br/>
                         Average: {this.state.fastest.average}</h5>
+                    </div>
+                    </div>
                 </div>
             </div>
         )
