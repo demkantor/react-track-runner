@@ -23,7 +23,6 @@ class Header extends Component {
 
 
     handleChangeDistance = (event, propertyName) => {
-        console.log(this.state.currenDdistance);
         console.log(event.target.value);
         this.setState({
             currentDistance : event.target.value
@@ -31,7 +30,6 @@ class Header extends Component {
       }
 
     handleChangeTime = (event, propertyName) => {
-        console.log(this.state.time);
         console.log(event.target.value);
         this.setState({
             currentTime : event.target.value
@@ -41,6 +39,24 @@ class Header extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         console.log('working hard here!', this.state);
+        if (Number(this.state.longest.distance) < Number(this.state.currentDistance)){
+            this.setState({
+            longest: {
+                distance: Number(this.state.currentDistance),
+                time: Number(this.state.currentTime),
+                average: (Number(this.state.currentDistance) / Number(this.state.currentTime)),
+            }
+        });
+    }
+        if (Number(this.state.fastest.average) < (Number(this.state.currentDistance) / Number(this.state.currentTime))){
+            this.setState({
+            fastest: {
+                distance: Number(this.state.currentDistance),
+                time: Number(this.state.currentTime),
+                average: (Number(this.state.currentDistance) / Number(this.state.currentTime)),
+            }
+        });
+    }
         this.setState({
             currentDistance: '',
             currentTime: '',
@@ -49,17 +65,10 @@ class Header extends Component {
                     time : Number(this.state.currentTime),
                     average: (Number(this.state.currentDistance) / Number(this.state.currentTime)),
             }
-        })
-        if (Number(this.state.longest.distance) < Number(this.state.currentDistance)){
-            this.setState({
-              longest: {
-                distance: Number(this.state.currentDistance),
-                time: Number(this.state.currentTime),
-                average: (Number(this.state.currentDistance) / Number(this.state.currentTime)),
-            }
-        })
-        }
+        });
+            
     }
+   
 
 
     render() {  
